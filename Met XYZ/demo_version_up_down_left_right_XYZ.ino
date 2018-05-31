@@ -20,6 +20,7 @@
   * - Exeption list with forbidden position. Motor might hit it's self if not implemented.
   * - 
   *///
+//git testje
 //____________________________________________DEFINES________________________________________________
 //Direction defines
 #define RIGHT 2
