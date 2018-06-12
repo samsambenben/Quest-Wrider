@@ -111,6 +111,8 @@
 #define YAW_ENCODER               21
 ///////////////////////////////////////////////////////
 
+//_____________________________________DEG_to_RAD_to_DEG______________________________________________
+
 float L1 = 252.5;
 float L2 = 252.5;
 float L3 = 253;
@@ -678,7 +680,7 @@ void setup() {
   #endif
 
 
-  initAllMotors(); //init
+  //initAllMotors(); //init
 
 
 }
@@ -691,54 +693,61 @@ void setup() {
 
 void loop() {
 // put your main code here, to run repeatedly:
- // testWrist();
+ testWrist();
   #ifdef DEMO
-//  moveToPos(&zedTarget, ZED_MAX_POS/2, &zedEncoder, ZED_PLUS, ZED_MIN, ZED_ENABLE, 250);
- //moveToPos(&shoulderTarget, 300, &shoulderEncoder, SHOULDER_PLUS, SHOULDER_MIN, SHOULDER_ENABLE, 130);//200 //130 works fine
-// //delay(100);
-// moveToPos(&elbowTarget, ELBOW_MAX_POS/2, &elbowEncoder, ELBOW_PLUS, ELBOW_MIN ,ELBOW_ENABLE, 133);
-// //delay(100);
-//  moveToPos(&yawTarget, (YAW_MAX_POS), &yawEncoder, YAW_PLUS, YAW_MIN, YAW_ENABLE, 65);// 60
-//  delay(7000);
-//   moveToPos(&shoulderTarget, SHOULDER_MAX_POS, &shoulderEncoder, SHOULDER_PLUS, SHOULDER_MIN, SHOULDER_ENABLE, 130);//200 //130 works fine
-// //delay(100);
-// moveToPos(&elbowTarget, ELBOW_MAX_POS/2, &elbowEncoder, ELBOW_PLUS, ELBOW_MIN ,ELBOW_ENABLE, 133);
-// //delay(100);
-//  moveToPos(&yawTarget, (YAW_MAX_POS/2), &yawEncoder, YAW_PLUS, YAW_MIN, YAW_ENABLE, 65);// 60
-//  delay(7000);
-//   moveToPos(&shoulderTarget, SHOULDER_MAX_POS/2, &shoulderEncoder, SHOULDER_PLUS, SHOULDER_MIN, SHOULDER_ENABLE, 130);//200 //130 works fine
-// //delay(100);
-// moveToPos(&elbowTarget, ELBOW_MAX_POS/2, &elbowEncoder, ELBOW_PLUS, ELBOW_MIN ,ELBOW_ENABLE, 133);
-// //delay(100);
-//  moveToPos(&yawTarget, (YAW_MAX_POS/2), &yawEncoder, YAW_PLUS, YAW_MIN, YAW_ENABLE, 65);// 60
-//  delay(7000);
-//demoMode();
-  //exit(0);
- // moveMotor(1000,255, LEFT, SHOULDER_PLUS, SHOULDER_MIN, SHOULDER_ENABLE);
- //Serial.println(shoulderEncoder);
-  //Serial.println(shoulderTarget);
-  //Serial.println(shoulderEncoder);
-//  //moveToPos(&zedTarget, ZED_MAX_POS/2, &zedEncoder, ZED_PLUS, ZED_MIN, ZED_ENABLE, 250);
-//   moveToPos(&wristLHTarget, 0, &wristLHEncoder, WRIST_LH_PLUS, WRIST_LH_MIN, WRIST_LH_ENABLE, 250);
-//   moveToPos(&wristRHTarget, 0, &wristRHEncoder, WRIST_RH_PLUS, WRIST_RH_MIN, WRIST_RH_ENABLE, 250);
-//delay(400);
-//stopAllMotors();
- // delay(5000);
+moveToPos(&zedTarget, ZED_MAX_POS/2, &zedEncoder, ZED_PLUS, ZED_MIN, ZED_ENABLE, 250);
+moveToPos(&shoulderTarget, 300, &shoulderEncoder, SHOULDER_PLUS, SHOULDER_MIN, SHOULDER_ENABLE, 130);//200 //130 works fine
+delay(100);
+moveToPos(&elbowTarget, ELBOW_MAX_POS/2, &elbowEncoder, ELBOW_PLUS, ELBOW_MIN ,ELBOW_ENABLE, 133);
+delay(100);
+moveToPos(&yawTarget, (YAW_MAX_POS), &yawEncoder, YAW_PLUS, YAW_MIN, YAW_ENABLE, 65);// 60
+delay(7000);
+moveToPos(&shoulderTarget, SHOULDER_MAX_POS, &shoulderEncoder, SHOULDER_PLUS, SHOULDER_MIN, SHOULDER_ENABLE, 130);//200 //130 works fine
+delay(100);
+moveToPos(&elbowTarget, ELBOW_MAX_POS/2, &elbowEncoder, ELBOW_PLUS, ELBOW_MIN ,ELBOW_ENABLE, 133);
+delay(100);
+moveToPos(&yawTarget, (YAW_MAX_POS/2), &yawEncoder, YAW_PLUS, YAW_MIN, YAW_ENABLE, 65);// 60
+delay(7000);
+moveToPos(&shoulderTarget, SHOULDER_MAX_POS/2, &shoulderEncoder, SHOULDER_PLUS, SHOULDER_MIN, SHOULDER_ENABLE, 130);//200 //130 works fine
+delay(100);
+moveToPos(&elbowTarget, ELBOW_MAX_POS/2, &elbowEncoder, ELBOW_PLUS, ELBOW_MIN ,ELBOW_ENABLE, 133);
+delay(100);
+moveToPos(&yawTarget, (YAW_MAX_POS/2), &yawEncoder, YAW_PLUS, YAW_MIN, YAW_ENABLE, 65);// 60
+delay(7000);
+demoMode();
+exit(0);
+moveMotor(1000,255, LEFT, SHOULDER_PLUS, SHOULDER_MIN, SHOULDER_ENABLE);
+Serial.println(shoulderEncoder);
+Serial.println(shoulderTarget);
+Serial.println(shoulderEncoder);
+moveToPos(&zedTarget, ZED_MAX_POS/2, &zedEncoder, ZED_PLUS, ZED_MIN, ZED_ENABLE, 250);
+moveToPos(&wristLHTarget, 0, &wristLHEncoder, WRIST_LH_PLUS, WRIST_LH_MIN, WRIST_LH_ENABLE, 250);
+moveToPos(&wristRHTarget, 0, &wristRHEncoder, WRIST_RH_PLUS, WRIST_RH_MIN, WRIST_RH_ENABLE, 250);
+delay(400);
+stopAllMotors();
+delay(5000);
   #endif
 
 
 //____________________________________________________XYZ Implementatie______________________________________________
   
 
-//   #ifdef biem 
-//   static int room_S,room_E,room_Y,encoderS, encoderE,encoderY,encoderW1,encoderW2,encoderZ; //S=shoulder, E=elbow, W=wrist(rot=rotation),Z=zed(y-as)
-//   static float rot =0;
-// int x   = retrieve_x();
-// int z   = retrieve_z();
-// int y   = retrieve_y();
-// static float phi =0;
-// berekening (&phi, &x, &z, &y, &encoderS, &encoderE, &encoderY, &encoderW1, &encoderW2, &encoderZ);
-//   #endif
+ 
+
+  #ifdef biem 
+  char keyboardInput = Serial.read();
+  if (keyboardInput == 'X') 
+  {
+    static int room_S,room_E,room_Y,encoderS, encoderE,encoderY,encoderW1,encoderW2,encoderZ; //S=shoulder, E=elbow, W=wrist(rot=rotation),Z=zed(y-as)
+    static float rot =0;
+    int x   = retrieve_x();
+    int z   = retrieve_z();
+    int y   = retrieve_y();
+    static float phi =10;
+    berekening (&phi, &x, &z, &y, &encoderS, &encoderE, &encoderY, &encoderW1, &encoderW2, &encoderZ);
+  }
+
+  #endif
 
 
 
